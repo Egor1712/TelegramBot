@@ -15,7 +15,11 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "projectReferences": {}
+        "projectReferences": {
+          "C:\\Users\\Egor\\Desktop\\TelegramBot\\TelegramBot\\ApplicationLogic\\ApplicationLogic.csproj": {
+            "projectPath": "C:\\Users\\Egor\\Desktop\\TelegramBot\\TelegramBot\\ApplicationLogic\\ApplicationLogic.csproj"
+          }
+        }
       }
     },
     "warningProperties": {

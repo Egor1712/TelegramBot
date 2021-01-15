@@ -43,6 +43,10 @@ x64/
 *.log
 *.svclog
 *.scc
+*.info
+*.cache
+*.json
+
 
 # Visual C++ cache files
 ipch/
@@ -126,6 +130,7 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+
 
 # Mac desktop service store files
 .DS_Store

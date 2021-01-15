@@ -50,6 +50,16 @@
             "rid": "win"
           }
         }
+      },
+      "ApplicationLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/ApplicationLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ApplicationLogic.dll": {}
+        }
       }
     }
   },
@@ -166,11 +176,17 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "ApplicationLogic/1.0.0": {
+      "type": "project",
+      "path": "../ApplicationLogic/ApplicationLogic.csproj",
+      "msbuildProject": "../ApplicationLogic/ApplicationLogic.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "AngleSharp >= 1.0.0-alpha-844"
+      "AngleSharp >= 1.0.0-alpha-844",
+      "ApplicationLogic >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -198,7 +214,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Egor\\Desktop\\TelegramBot\\TelegramBot\\ApplicationLogic\\ApplicationLogic.csproj": {
+              "projectPath": "C:\\Users\\Egor\\Desktop\\TelegramBot\\TelegramBot\\ApplicationLogic\\ApplicationLogic.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
