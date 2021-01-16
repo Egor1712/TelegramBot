@@ -54,7 +54,7 @@ namespace Services
             if (debt is null || !regex.IsMatch(debt))
                 throw new Exception("Cannot parse debt!");
             var match = regex.Match(debt).Value;
-            var service = new DormitoryService(decimal.Parse(match, CultureInfo.InvariantCulture));
+            var service = new DormitoryService(decimal.Parse(match, CultureInfo.CurrentCulture));
             var extractions = pageLoader.GetAllElements<IHtmlAnchorElement>("a", "btn btn-info");
             foreach (var extraction in extractions)
             {
