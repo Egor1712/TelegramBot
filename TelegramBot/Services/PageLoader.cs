@@ -5,31 +5,31 @@ using System.Threading.Tasks;
 using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
+using ApplicationLogic;
 
 namespace Services
 {
     public class PageLoader
     {
-        private readonly string rootUrl;
-        private readonly IBrowsingContext context;
+        private static readonly IConfiguration Configuration = AngleSharp.Configuration.Default
+            .WithDefaultCookies()
+            .WithDefaultLoader();
+
+        private IBrowsingContext context;
         private readonly string userName;
         private readonly string password;
         public IHtmlAllCollection HtmlContent => context.Active.All;
 
-        public PageLoader(string rootUrl, string userName, string password)
+        public PageLoader(string userName, string password)
         {
-            this.rootUrl = rootUrl;
             this.userName = userName;
             this.password = password;
-            var config = Configuration.Default
-                                      .WithDefaultCookies()
-                                      .WithDefaultLoader();
-            context = BrowsingContext.New(config);
         }
 
         public async Task Authorize()
         {
-            await context.OpenAsync(rootUrl);
+            context = BrowsingContext.New(Configuration);
+            await context.OpenAsync(UrFuUrls.Rates);
             var login =
                 context.Active
                        .QuerySelector<IHtmlInputElement>("input#userNameInput");
@@ -41,12 +41,10 @@ namespace Services
             var button = context.Active.QuerySelector<IHtmlFormElement>("form");
             await button.SubmitAsync();
         }
-
-        public async void GoToPageAsync(string newUrl)
+        
+        public async Task<IDocument> GoToPageAsync(string newUrl)
         {
-            if (!newUrl.StartsWith(rootUrl))
-                return;
-            await context.OpenAsync(newUrl);
+            return await context.OpenAsync(newUrl);
         }
 
         public string GetContentOfElement<T>(string id, string elementType)
@@ -62,7 +60,8 @@ namespace Services
             where T : class, IElement
         {
             return context.Active.QuerySelectorAll<T>(type)
-                          .Where(x => x.ClassName != null && x.ClassName.Contains(className));
+                          .Where(x => x.ClassName != null 
+                                      && x.ClassName.Contains(className));
         }
     }
 }

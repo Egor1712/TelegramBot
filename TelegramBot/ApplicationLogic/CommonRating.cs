@@ -11,7 +11,7 @@ namespace ApplicationLogic
         public int Year { get; }
         public PeriodType PeriodType { get; }
 
-        public CommonRating(int position, int membersCount, decimal score, int year, PeriodType periodType)
+        public CommonRating(int position, int membersCount, decimal score, int year = 2020, PeriodType periodType = PeriodType.Year)
         {
             Position = position;
             MembersCount = membersCount;

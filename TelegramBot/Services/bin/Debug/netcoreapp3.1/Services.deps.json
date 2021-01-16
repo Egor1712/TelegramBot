@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v3.1": {
       "Services/1.0.0": {
         "dependencies": {
-          "AngleSharp": "1.0.0-alpha-844"
+          "AngleSharp": "1.0.0-alpha-844",
+          "ApplicationLogic": "1.0.0"
         },
         "runtime": {
           "Services.dll": {}
@@ -31,6 +32,11 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.0.0",
           "System.Runtime.CompilerServices.Unsafe": "4.5.0"
+        }
+      },
+      "ApplicationLogic/1.0.0": {
+        "runtime": {
+          "ApplicationLogic.dll": {}
         }
       }
     }
@@ -68,6 +74,11 @@
       "sha512": "sha512-S0wEUiKcLvRlkFUXca8uio1UQ5bYQzYgOmOKtCqaBQC3GR9AJjh43otcM32IGsAyvadFTaAMw9Irm6dS4Evfng==",
       "path": "system.text.encoding.codepages/4.5.0",
       "hashPath": "system.text.encoding.codepages.4.5.0.nupkg.sha512"
+    },
+    "ApplicationLogic/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

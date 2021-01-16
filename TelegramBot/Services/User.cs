@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using ApplicationLogic;
 
 namespace Services
 {
     public class User
     {
-        public CommonRating Rating { get; }
-        public DormitoryService DormitoryService { get; }
+        public CommonRating Rating { get; set; }
+        public DormitoryService DormitoryService { get; set; }
         public IReadOnlyCollection<Subject> Subjects => subjects;
-        private readonly List<Subject> subjects = new List<Subject>();
+        private List<Subject> subjects;
         private readonly string userName;
         private readonly string password;
         private readonly PageLoader pageLoader;
@@ -17,9 +20,14 @@ namespace Services
         {
             this.userName = userName;
             this.password = password;
-            pageLoader = new PageLoader(UrFuUrls.Rates, userName, password);
-            pageLoader.Authorize();
+            pageLoader = new PageLoader( userName, password);
         }
-        
+
+        public async Task Initialize()
+        {
+            await pageLoader.Authorize();
+            subjects = await ParseHelper.ParseSubjects(pageLoader).ToList();
+            DormitoryService = await ParseHelper.ParseDormitoryService(pageLoader);
+        }
     }
 }

@@ -1,10 +1,6 @@
-C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\bin\Debug\netcoreapp3.1\Services.exe
 C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\bin\Debug\netcoreapp3.1\Services.deps.json
-C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\bin\Debug\netcoreapp3.1\Services.runtimeconfig.json
-C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\bin\Debug\netcoreapp3.1\Services.runtimeconfig.dev.json
 C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\bin\Debug\netcoreapp3.1\Services.dll
 C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\bin\Debug\netcoreapp3.1\Services.pdb
-C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\bin\Debug\netcoreapp3.1\AngleSharp.dll
 C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\obj\Debug\netcoreapp3.1\Services.csprojAssemblyReference.cache
 C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\obj\Debug\netcoreapp3.1\Services.AssemblyInfoInputs.cache
 C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\obj\Debug\netcoreapp3.1\Services.AssemblyInfo.cs
@@ -12,4 +8,5 @@ C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\obj\Debug\netcoreapp3.1\S
 C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\obj\Debug\netcoreapp3.1\Services.csproj.CopyComplete
 C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\obj\Debug\netcoreapp3.1\Services.dll
 C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\obj\Debug\netcoreapp3.1\Services.pdb
-C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\obj\Debug\netcoreapp3.1\Services.genruntimeconfig.cache
+C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\bin\Debug\netcoreapp3.1\ApplicationLogic.dll
+C:\Users\Egor\Desktop\TelegramBot\TelegramBot\Services\bin\Debug\netcoreapp3.1\ApplicationLogic.pdb
