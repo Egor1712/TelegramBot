@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <PackageReference Include="AngleSharp" Version="1.0.0-alpha-844" />
+      <PackageReference Include="Telegram.Bot" Version="15.7.1" />
     </ItemGroup>
 
     <ItemGroup>

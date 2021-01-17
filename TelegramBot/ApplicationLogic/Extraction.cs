@@ -14,5 +14,10 @@ namespace ApplicationLogic
             Payment = payment;
             Withdrawal = withdrawal;
         }
+
+        public override string ToString()
+        {
+            return $"Date : {DateTime}\nPayment : {Payment}\nWithdrawal : {Withdrawal}";
+        }
     }
 }

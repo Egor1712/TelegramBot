@@ -45,7 +45,9 @@ x64/
 *.scc
 *.info
 *.cache
-*.json
+/TelegramBot/obj/
+/TelegramBot/.idea/
+/TelegramBot/bin/
 
 
 # Visual C++ cache files
@@ -136,3 +138,8 @@ $RECYCLE.BIN/
 .DS_Store
 
 _NCrunch*
+*.cache
+*.pdb
+*.json
+*.cache
+*.info
