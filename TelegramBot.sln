@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationLogic", "ApplicationLogic\ApplicationLogic.csproj", "{805E3600-FE22-47BC-A0C6-94FEB023E15D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot", "Bot\Bot.csproj", "{1C53CBF7-74F8-47AD-929B-EEBDEAA7F474}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramBot", "TelegramBot\TelegramBot.csproj", "{9C44BD91-1CFB-4F17-B8EE-0C7C6771494F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +20,9 @@ Global
 		{805E3600-FE22-47BC-A0C6-94FEB023E15D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{805E3600-FE22-47BC-A0C6-94FEB023E15D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{805E3600-FE22-47BC-A0C6-94FEB023E15D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C53CBF7-74F8-47AD-929B-EEBDEAA7F474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C53CBF7-74F8-47AD-929B-EEBDEAA7F474}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C53CBF7-74F8-47AD-929B-EEBDEAA7F474}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C53CBF7-74F8-47AD-929B-EEBDEAA7F474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C44BD91-1CFB-4F17-B8EE-0C7C6771494F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C44BD91-1CFB-4F17-B8EE-0C7C6771494F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C44BD91-1CFB-4F17-B8EE-0C7C6771494F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C44BD91-1CFB-4F17-B8EE-0C7C6771494F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

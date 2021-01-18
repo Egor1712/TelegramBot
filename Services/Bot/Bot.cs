@@ -1,6 +1,8 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Services.Commands;
 using Telegram.Bot;
 using Telegram.Bot.Args;
@@ -20,6 +22,30 @@ namespace Services.Bot
             botClient.StartReceiving();
         }
 
+        public async Task SendMessageAsync(long chatId, string message)
+        {
+            await botClient.SendTextMessageAsync(chatId, message);
+        }
+
+        private async Task<bool> TryAuthorizeAsync(long chatId, string text)
+        {
+            var user = users[chatId];
+            if (!DataRegex.IsMatch(text))
+            {
+                await SendMessageAsync(chatId,
+                                       "Please send me your login and password in format <login> : <password>");
+                return false;
+            }
+
+            var match = DataRegex.Match(text);
+            var login = match.Groups["Login"].Value;
+            var password = match.Groups["Password"].Value;
+            await user.Initialize(login, password);
+            await botClient.SendTextMessageAsync(chatId, "You successfully login!");
+            return true;
+        }
+
+
         private async void BotClientOnOnMessage(object? sender, MessageEventArgs eventArgs)
         {
             var message = eventArgs.Message;
@@ -29,31 +55,22 @@ namespace Services.Bot
                 if (!users.ContainsKey(chatId))
                 {
                     users[chatId] = new User();
-                    await botClient.SendTextMessageAsync(chatId,
-                                                         "Please send me your login and password in format <login> : <password>");
+                    await SendMessageAsync(chatId,
+                                           "Please send me your login and password in format <login> : <password>");
                     return;
                 }
 
                 var user = users[chatId];
                 if (!user.IsAuthorize)
                 {
-                    if (!DataRegex.IsMatch(message.Text))
-                    {
-                        await botClient.SendTextMessageAsync(chatId,
-                                                             "Please send me your login and password in format <login> : <password>");
-                        return;
-                    }
-
-                    var match = DataRegex.Match(message.Text);
-                    var login = match.Groups["Login"].Value;
-                    var password = match.Groups["Password"].Value;
-                    await user.Initialize(login, password);
-                    await botClient.SendTextMessageAsync(chatId, "You successfully login!");
+                    if (!await TryAuthorizeAsync(chatId, message.Text))
+                        await SendMessageAsync(chatId,
+                                               "Please send me your login and password in format <login> : <password>");
                     return;
                 }
 
                 var command = CommandParser.GetCommand(message.Text);
-                await command.Execute(botClient, message, user);
+                await command.Execute(this, message, user);
             }
             catch (Exception exception)
             {
@@ -64,6 +81,13 @@ namespace Services.Bot
                 Console.WriteLine(message.Text);
                 Console.WriteLine(exception.StackTrace);
             }
+        }
+
+        public void UnloginUserByChatId(long chatId)
+        {
+            if (users.ContainsKey(chatId))
+                users.Remove(chatId);
+            users[chatId] = new User();
         }
     }
 }

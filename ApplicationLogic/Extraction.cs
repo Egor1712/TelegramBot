@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ApplicationLogic
+﻿namespace ApplicationLogic
 {
     public class Extraction
     {
