@@ -53,7 +53,7 @@ namespace Services
                                  .FirstOrDefault();
             var debt = decimal.Zero;
             if (debtString != null && regex.IsMatch(debtString))
-                debt = decimal.Parse(regex.Match(debtString).Value, CultureInfo.CurrentCulture);
+                debt = decimal.Parse(regex.Match(debtString).Value, CultureInfo.InvariantCulture);
             var service = new DormitoryService(debt);
             var extractions = pageLoader.GetAllElements<IHtmlAnchorElement>("a", "btn btn-info");
             foreach (var extraction in extractions)
@@ -81,12 +81,12 @@ namespace Services
             if (regex.IsMatch(items[1]))
             {
                 var pay = regex.Match(items[1]).Value;
-                payment = decimal.Parse(pay, CultureInfo.CurrentCulture);
+                payment = decimal.Parse(pay, CultureInfo.InvariantCulture);
             }
 
             var withdrawal = decimal.Zero;
             if (regex.IsMatch(items[2]))
-                withdrawal = decimal.Parse(regex.Match(items[2]).Value, CultureInfo.CurrentCulture);
+                withdrawal = decimal.Parse(regex.Match(items[2]).Value, CultureInfo.InvariantCulture);
             return new Extraction(date, payment, withdrawal);
         }
         
