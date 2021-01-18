@@ -15,15 +15,17 @@ namespace Services.Bot
 
         public Bot()
         {
+            botClient.DeleteWebhookAsync().Wait();
             botClient.OnMessage += BotClientOnOnMessage;
             botClient.StartReceiving();
         }
 
-        private async void BotClientOnOnMessage(object? sender, MessageEventArgs e)
+        private async void BotClientOnOnMessage(object? sender, MessageEventArgs eventArgs)
         {
+            var message = eventArgs.Message;
             try
             {
-                var chatId = e.Message.Chat.Id;
+                var chatId = message.Chat.Id;
                 if (!users.ContainsKey(chatId))
                 {
                     users[chatId] = new User();
@@ -35,14 +37,14 @@ namespace Services.Bot
                 var user = users[chatId];
                 if (!user.IsAuthorize)
                 {
-                    if (!DataRegex.IsMatch(e.Message.Text))
+                    if (!DataRegex.IsMatch(message.Text))
                     {
                         await botClient.SendTextMessageAsync(chatId,
                                                              "Please send me your login and password in format <login> : <password>");
                         return;
                     }
 
-                    var match = DataRegex.Match(e.Message.Text);
+                    var match = DataRegex.Match(message.Text);
                     var login = match.Groups["Login"].Value;
                     var password = match.Groups["Password"].Value;
                     await user.Initialize(login, password);
@@ -50,16 +52,16 @@ namespace Services.Bot
                     return;
                 }
 
-                var command = CommandParser.GetCommand(e.Message.Text);
-                await command.Execute(botClient, e.Message, user);
+                var command = CommandParser.GetCommand(message.Text);
+                await command.Execute(botClient, message, user);
             }
             catch (Exception exception)
             {
-                if (e.Message.Text.StartsWith("/"))
-                    await botClient.SendTextMessageAsync(e.Message.Chat.Id,
-                                                         $"Unknown command {e.Message.Text}! Please use /help");
+                if (message.Text.StartsWith("/"))
+                    await botClient.SendTextMessageAsync(message.Chat.Id,
+                                                         $"Unknown command {message.Text}! Please use /help");
                 Console.WriteLine(exception.Message);
-                Console.WriteLine(e.Message.Text);
+                Console.WriteLine(message.Text);
                 Console.WriteLine(exception.StackTrace);
             }
         }
