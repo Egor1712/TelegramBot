@@ -8,9 +8,9 @@ namespace Services.Commands
     public class StartCommand : ICommand
     {
         public string Description => "Command /start allows to start work with bot";
-        public async Task Execute(Bot.Bot bot, Message message, User user)
+        public async Task Execute(Message message, User user)
         {
-            await bot.SendMessageAsync(message.Chat.Id, "List of commands - /help");
+            await Bot.Bot.SendMessageAsync(message.Chat.Id, "List of commands - /help");
         }
     }
 }

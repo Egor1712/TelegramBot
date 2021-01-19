@@ -19,13 +19,13 @@ namespace Services.Commands
 
         public string Description => "Command /help gets all available commands";
 
-        public async Task Execute(Bot.Bot bot, Message message, User user)
+        public async Task Execute(Message message, User user)
         {
             var builder = new StringBuilder();
             foreach (var command in Commands)
                 builder.Append($"{command.Description}\n");
 
-            await bot.SendMessageAsync(message.Chat.Id, builder.ToString());
+            await Bot.Bot.SendMessageAsync(message.Chat.Id, builder.ToString());
         }
     }
 }

@@ -7,3 +7,12 @@ C:\Users\Egor\Desktop\TelegramBot\TelegramBot\ApplicationLogic\obj\Debug\netcore
 C:\Users\Egor\Desktop\TelegramBot\TelegramBot\ApplicationLogic\obj\Debug\netcoreapp3.1\ApplicationLogic.csproj.CoreCompileInputs.cache
 C:\Users\Egor\Desktop\TelegramBot\TelegramBot\ApplicationLogic\obj\Debug\netcoreapp3.1\ApplicationLogic.dll
 C:\Users\Egor\Desktop\TelegramBot\TelegramBot\ApplicationLogic\obj\Debug\netcoreapp3.1\ApplicationLogic.pdb
+C:\Users\Egor\Desktop\TelegramBot\ApplicationLogic\bin\Debug\netcoreapp3.1\ApplicationLogic.deps.json
+C:\Users\Egor\Desktop\TelegramBot\ApplicationLogic\bin\Debug\netcoreapp3.1\ApplicationLogic.dll
+C:\Users\Egor\Desktop\TelegramBot\ApplicationLogic\bin\Debug\netcoreapp3.1\ApplicationLogic.pdb
+C:\Users\Egor\Desktop\TelegramBot\ApplicationLogic\obj\Debug\netcoreapp3.1\ApplicationLogic.csprojAssemblyReference.cache
+C:\Users\Egor\Desktop\TelegramBot\ApplicationLogic\obj\Debug\netcoreapp3.1\ApplicationLogic.AssemblyInfoInputs.cache
+C:\Users\Egor\Desktop\TelegramBot\ApplicationLogic\obj\Debug\netcoreapp3.1\ApplicationLogic.AssemblyInfo.cs
+C:\Users\Egor\Desktop\TelegramBot\ApplicationLogic\obj\Debug\netcoreapp3.1\ApplicationLogic.csproj.CoreCompileInputs.cache
+C:\Users\Egor\Desktop\TelegramBot\ApplicationLogic\obj\Debug\netcoreapp3.1\ApplicationLogic.dll
+C:\Users\Egor\Desktop\TelegramBot\ApplicationLogic\obj\Debug\netcoreapp3.1\ApplicationLogic.pdb

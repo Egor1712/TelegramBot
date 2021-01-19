@@ -6,6 +6,6 @@ namespace Services.Commands
     public interface ICommand
     { 
         string Description { get; }
-        Task Execute(Bot.Bot bot, Message message, User user);
+        Task Execute(Message message, User user);
     }
 }

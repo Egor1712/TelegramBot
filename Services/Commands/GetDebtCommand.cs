@@ -8,11 +8,11 @@ namespace Services.Commands
     {
         public string Description => "Command /debt gets your dormitory debt";
 
-        public async Task Execute(Bot.Bot bot, Message message, User user)
+        public async Task Execute(Message message, User user)
         {
-            await bot.SendMessageAsync(message.Chat.Id,
-                                       user.DormitoryService.Debt.ToString(CultureInfo
-                                           .InvariantCulture));
+            await Bot.Bot.SendMessageAsync(message.Chat.Id,
+                                           user.DormitoryService.Debt.ToString(CultureInfo
+                                               .InvariantCulture));
         }
     }
 }
