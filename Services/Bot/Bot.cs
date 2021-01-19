@@ -14,12 +14,6 @@ namespace Services.Bot
         private static readonly Regex DataRegex = new Regex(@"(?<Login>.+) : (?<Password>.+)");
         private static readonly TelegramBotClient BotClient = new TelegramBotClient(BotInfo.BotToken);
         private static readonly Dictionary<long, User> Users = new Dictionary<long, User>();
-
-        static Bot()
-        {
-            BotClient.SetWebhookAsync($"{BotInfo.Url}update").Wait();
-        }
-        
         
         public static async Task SendMessageAsync(long chatId, string message)
         {
@@ -86,6 +80,11 @@ namespace Services.Bot
             if (Users.ContainsKey(chatId))
                 Users.Remove(chatId);
             Users[chatId] = new User();
+        }
+
+        public static void SetWebHook()
+        {
+            BotClient.SetWebhookAsync($"{BotInfo.Url}update").Wait();
         }
     }
 }
