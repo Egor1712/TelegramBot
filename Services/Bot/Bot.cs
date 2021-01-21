@@ -85,6 +85,8 @@ namespace Services.Bot
         public static void SetWebHook()
         {
             BotClient.SetWebhookAsync(BotInfo.Url).Wait();
+            var config = BotClient.GetWebhookInfoAsync().Result;
+            Console.WriteLine(config.Url);
         }
 
         public static void StartReceiving()
