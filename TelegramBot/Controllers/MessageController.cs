@@ -21,14 +21,16 @@ namespace TelegramBot.Controllers
             if (update is null)
             {
                 logger.LogInformation("Update was null");
-                foreach (var requestHeader in Request.Headers)
-                {
-                    logger.LogDebug($"{requestHeader.Key} : {requestHeader.Value}");
-                }
+               
                 return;
             }
             var message = update.Message;
-            logger.LogInformation($"Update was received, message : {message}");
+            if (message is null)
+            {
+                logger.LogInformation("Message was null");
+                return;
+            }
+            logger.LogInformation($"Update was received, message : {message.Text}");
             await Bot.BotClientOnOnMessage(message);
         }
     }
