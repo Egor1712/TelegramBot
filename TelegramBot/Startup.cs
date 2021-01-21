@@ -23,7 +23,6 @@ namespace TelegramBot
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
-            app.UseHsts();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
