@@ -1,18 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Services.Bot;
+using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 
 namespace TelegramBot.Controllers
 {
     public class MessageController : Controller
     {
+        private readonly ILogger logger;
+
+        public MessageController(ILogger logger)
+        {
+            this.logger = logger;
+        }
+
         [HttpPost]
-        public void Post([FromBody]Update update)
+        public async void Post([FromBody]Update update)
         {
             if (update is null)
+            {
+                logger.LogInformation("Update was null");
                 return;
+            }
             var message = update.Message;
-            Bot.BotClientOnOnMessage(message).Wait();
+            logger.LogInformation($"Update was received, message : {message}");
+            await Bot.BotClientOnOnMessage(message);
         }
     }
 }
