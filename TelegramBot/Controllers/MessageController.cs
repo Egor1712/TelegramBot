@@ -16,7 +16,7 @@ namespace TelegramBot.Controllers
         }
 
         [HttpPost]
-        public async void Post([FromQuery]Update update)
+        public async void Post([FromRoute]Update update)
         {
             if (update is null)
             {
