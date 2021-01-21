@@ -10,7 +10,6 @@ namespace TelegramBot
         {
             CreateHostBuilder(args).Build().Run();
             Bot.SetWebHook();
-            Bot.StartReceiving();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

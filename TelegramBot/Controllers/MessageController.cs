@@ -15,7 +15,6 @@ namespace TelegramBot.Controllers
             this.logger = logger;
         }
 
-        [HttpPost]
         public async void Post(Update update)
         {
             if (update is null)
