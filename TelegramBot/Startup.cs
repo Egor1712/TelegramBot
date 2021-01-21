@@ -33,7 +33,6 @@ namespace TelegramBot
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             logger.LogInformation("Startup used!");
