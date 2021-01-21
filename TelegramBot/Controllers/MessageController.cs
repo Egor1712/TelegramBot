@@ -7,10 +7,12 @@ namespace TelegramBot.Controllers
     public class MessageController : Controller
     {
         [HttpPost]
-        public async void Post([FromBody]Update update)
+        public void Post([FromBody]Update update)
         {
+            if (update is null)
+                return;
             var message = update.Message;
-            await Bot.BotClientOnOnMessage(message);
+            Bot.BotClientOnOnMessage(message).Wait();
         }
     }
 }
