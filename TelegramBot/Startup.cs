@@ -23,26 +23,15 @@ namespace TelegramBot
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
-            }
-
-            app.UseStaticFiles();
+            app.UseHsts();
             app.UseRouting();
-            logger.LogInformation("Startup used!");
 
             app.UseEndpoints(endpoints =>
                              {
                                  endpoints.MapControllerRoute(
                                                               name: "default",
                                                               pattern:
-                                                              "{controller=Home}/{action=Index}/{id?}");
+                                                              "{controller=Home}/{action=Index}");
                              });
         }
     }

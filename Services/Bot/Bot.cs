@@ -83,11 +83,10 @@ namespace Services.Bot
             Users[chatId] = new User();
         }
 
-        public static void SetWebHook()
+        public static async Task SetWebHook()
         {
-            BotClient.SetWebhookAsync(BotInfo.Url).Wait();
-            var config = BotClient.GetWebhookInfoAsync().Result;
-            Console.WriteLine(config.Url);
+            await BotClient.DeleteWebhookAsync();
+            await BotClient.SetWebhookAsync(BotInfo.Url);
         }
 
         public static void StartReceiving()

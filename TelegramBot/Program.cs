@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Services.Bot;
@@ -6,10 +7,10 @@ namespace TelegramBot
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
+            await Bot.SetWebHook();
             CreateHostBuilder(args).Build().Run();
-            Bot.SetWebHook();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

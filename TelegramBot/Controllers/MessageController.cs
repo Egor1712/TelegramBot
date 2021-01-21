@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.IO;
+using System.Text;
+using AngleSharp.Common;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Services.Bot;
 using Telegram.Bot.Args;
@@ -15,21 +20,20 @@ namespace TelegramBot.Controllers
             this.logger = logger;
         }
 
-        public async void Post(Update update)
+        [HttpPost]
+        public async void Post([FromBody]Update update)
         {
             if (update is null)
             {
-                logger.LogInformation("Update was null");
-               
+               logger.LogError("update is null!");
                 return;
             }
             var message = update.Message;
             if (message is null)
             {
-                logger.LogInformation("Message was null");
+                logger.LogError("message is null");
                 return;
             }
-            logger.LogInformation($"Update was received, message : {message.Text}");
             await Bot.BotClientOnOnMessage(message);
         }
     }
