@@ -8,9 +8,9 @@ namespace TelegramBot.Controllers
 {
     public class MessageController : Controller
     {
-        private readonly ILogger logger;
+        private readonly ILogger<MessageController> logger;
 
-        public MessageController(ILogger logger)
+        public MessageController(ILogger<MessageController> logger)
         {
             this.logger = logger;
         }
