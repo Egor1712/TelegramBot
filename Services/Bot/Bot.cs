@@ -9,7 +9,7 @@ using Telegram.Bot.Types;
 
 namespace Services.Bot
 {
-    public class Bot
+    public static class Bot
     {
         private static readonly Regex DataRegex = new Regex(@"(?<Login>.+) : (?<Password>.+)");
         private static readonly TelegramBotClient BotClient = new TelegramBotClient(BotInfo.BotToken);
