@@ -93,5 +93,15 @@ namespace Services.Bot
         {
             BotClient.StartReceiving();
         }
+
+        public static async Task DeleteWebhook()
+        {
+            await BotClient.DeleteWebhookAsync();
+        }
+
+        public static void BotOnMessage()
+        {
+            BotClient.OnMessage += async (sender, args) => await BotClientOnOnMessage(args.Message);
+        }
     }
 }
