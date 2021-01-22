@@ -33,11 +33,10 @@ namespace TelegramBot
                              {
                                  endpoints.MapPost(@"/Message/Post", async context =>
                                                    {
-                                                       var streamReader =
-                                                           new StreamReader(context.Request
-                                                               .Body);
+                                                       var json =await 
+                                                           new StreamReader(context.Request.Body).ReadToEndAsync();
                                                        var reader =
-                                                           new JsonTextReader(streamReader);
+                                                           new JsonTextReader(new StringReader(json));
                                                        var update =
                                                            serializer
                                                                .Deserialize<Update>(reader);
