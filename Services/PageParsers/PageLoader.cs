@@ -11,7 +11,7 @@ namespace Services
 {
     public class PageLoader
     {
-        private readonly IConfiguration configuration = AngleSharp.Configuration.Default
+        private readonly IConfiguration configuration = Configuration.Default
             .WithDefaultCookies()
             .WithDefaultLoader();
 

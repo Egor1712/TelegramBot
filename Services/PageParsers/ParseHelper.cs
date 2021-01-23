@@ -13,7 +13,7 @@ namespace Services
     public static class ParseHelper
     {
         private static readonly Regex regex = new Regex(@"(\d*,\d*)");
-
+        private static readonly CultureInfo CultureInfo = CultureInfo.InvariantCulture;
         public static async IAsyncEnumerable<Subject> ParseSubjects(PageLoader pageLoader)
         {
             await pageLoader.GoToPageAsync(UrFuUrls.Rates);
@@ -29,7 +29,7 @@ namespace Services
             for (var i = 0; i < subjects.Count; i++)
                 yield return new Subject(subjects[i].Text,
                                          decimal.Parse(rates[i].TextContent,
-                                                       CultureInfo.InvariantCulture));
+                                                       CultureInfo));
         }
 
         public static async Task<CommonRating> ParseCommonRating(PageLoader pageLoader)
@@ -53,7 +53,7 @@ namespace Services
                                  .FirstOrDefault();
             var debt = decimal.Zero;
             if (debtString != null && regex.IsMatch(debtString))
-                debt = decimal.Parse(regex.Match(debtString).Value, CultureInfo.InvariantCulture);
+                debt = decimal.Parse(regex.Match(debtString).Value, CultureInfo.CurrentCulture);
             var service = new DormitoryService(debt);
             var extractions = pageLoader.GetAllElements<IHtmlAnchorElement>("a", "btn btn-info");
             foreach (var extraction in extractions)
@@ -81,12 +81,12 @@ namespace Services
             if (regex.IsMatch(items[1]))
             {
                 var pay = regex.Match(items[1]).Value;
-                payment = decimal.Parse(pay, CultureInfo.InvariantCulture);
+                payment = decimal.Parse(pay, CultureInfo);
             }
 
             var withdrawal = decimal.Zero;
             if (regex.IsMatch(items[2]))
-                withdrawal = decimal.Parse(regex.Match(items[2]).Value, CultureInfo.InvariantCulture);
+                withdrawal = decimal.Parse(regex.Match(items[2]).Value, CultureInfo);
             return new Extraction(date, payment, withdrawal);
         }
         

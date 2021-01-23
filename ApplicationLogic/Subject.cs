@@ -7,8 +7,8 @@
 
         public Subject(string name, decimal rate)
         {
-            this.Name = name;
-            this.Rate = rate;
+            Name = name;
+            Rate = rate;
         }
 
         public override int GetHashCode()
