@@ -26,8 +26,6 @@ namespace Services.Bot
             var user = Users[chatId];
             if (!DataRegex.IsMatch(text))
             {
-                await SendMessageAsync(chatId,
-                                       "Please send me your login and password in format <login> : <password>");
                 return false;
             }
 
@@ -70,9 +68,6 @@ namespace Services.Bot
                 if (message.Text.StartsWith("/"))
                     await BotClient.SendTextMessageAsync(message.Chat.Id,
                                                          $"Unknown command {message.Text}! Please use /help");
-                Console.WriteLine(exception.Message);
-                Console.WriteLine(message.Text);
-                Console.WriteLine(exception.StackTrace);
             }
         }
 
@@ -87,21 +82,6 @@ namespace Services.Bot
         {
             await BotClient.DeleteWebhookAsync();
             await BotClient.SetWebhookAsync(BotInfo.Url);
-        }
-
-        public static void StartReceiving()
-        {
-            BotClient.StartReceiving();
-        }
-
-        public static async Task DeleteWebhook()
-        {
-            await BotClient.DeleteWebhookAsync();
-        }
-
-        public static void BotOnMessage()
-        {
-            BotClient.OnMessage += async (sender, args) => await BotClientOnOnMessage(args.Message);
         }
     }
 }
