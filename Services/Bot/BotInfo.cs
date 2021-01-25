@@ -3,6 +3,6 @@
     public static class BotInfo
     {
         public const string BotToken = "1473985800:AAEh69_dnPg3-ef0ItLpaIx9lQDtINQwIQs";
-        public const string Url  = "https://telegrambot34.herokuapp.com//Message/Post";
+        public const string Url  = "https://telegrambot34.herokuapp.com/Message/Post";
     }
 }
