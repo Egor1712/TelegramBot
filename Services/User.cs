@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ApplicationLogic;
 
@@ -8,23 +9,23 @@ namespace Services
     {
         public bool IsAuthorize { get; private set; }
         public CommonRating Rating { get; set; }
-        public DormitoryService DormitoryService { get; set; }
-        public IReadOnlyCollection<Subject> Subjects => subjects;
+        public DormitoryService DormitoryService => service ??= ParseHelper.ParseDormitoryService(pageLoader).Result;
+        public IReadOnlyCollection<Subject> Subjects => subjects ??= ParseHelper.ParseSubjects(pageLoader).ToList().Result;
         private List<Subject> subjects;
+        private DormitoryService service;
         private string userName;
         private string password;
         private PageLoader pageLoader;
         
 
-        public async Task Initialize(string userName, string password)
+        public async Task<bool> Initialize(string userName, string password)
         {
+            pageLoader = new PageLoader( userName, password);
+            IsAuthorize = await pageLoader.TryAuthorize();
+            if (!IsAuthorize) return IsAuthorize;
             this.userName = userName;
             this.password = password;
-            pageLoader = new PageLoader( userName, password);
-            await pageLoader.Authorize();
-            subjects = await ParseHelper.ParseSubjects(pageLoader).ToList();
-            DormitoryService = await ParseHelper.ParseDormitoryService(pageLoader);
-            IsAuthorize = true;
+            return IsAuthorize;
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿#nullable enable
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Services.Commands;
@@ -32,9 +31,7 @@ namespace Services.Bot
             var match = DataRegex.Match(text);
             var login = match.Groups["Login"].Value;
             var password = match.Groups["Password"].Value;
-            await user.Initialize(login, password);
-            await BotClient.SendTextMessageAsync(chatId, "You successfully login!");
-            return true;
+            return await user.Initialize(login, password);
         }
 
 
@@ -57,6 +54,8 @@ namespace Services.Bot
                     if (!await TryAuthorizeAsync(chatId, message.Text))
                         await SendMessageAsync(chatId,
                                                "Please send me your login and password in format <login> : <password>");
+                    else
+                        await BotClient.SendTextMessageAsync(chatId, "You successfully login!");
                     return;
                 }
 

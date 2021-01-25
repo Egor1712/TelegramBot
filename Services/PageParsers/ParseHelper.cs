@@ -16,13 +16,13 @@ namespace Services
         private static readonly CultureInfo CultureInfo = CultureInfo.InvariantCulture;
         public static async IAsyncEnumerable<Subject> ParseSubjects(PageLoader pageLoader)
         {
-            await pageLoader.GoToPageAsync(UrFuUrls.Rates);
+            var document = await pageLoader.GoToPageAsync(UrFuUrls.Rates);
             var subjects = pageLoader
-                           .GetAllElements<IHtmlAnchorElement>("a", "js-service-rating-link")
+                           .GetAllElements<IHtmlAnchorElement>(document, "a", "js-service-rating-link")
                            .ToList();
             var rates =
                 pageLoader
-                    .GetAllElements<IHtmlTableDataCellElement>("td", "js-service-rating-td td-1")
+                    .GetAllElements<IHtmlTableDataCellElement>(document, "td", "js-service-rating-td td-1")
                     .ToList();
             if (rates.Count != subjects.Count)
                 throw new Exception($"{nameof(rates.Count)} not equals with {subjects.Count}");
@@ -36,10 +36,9 @@ namespace Services
         {
             var document = await pageLoader.GoToPageAsync(UrFuUrls.Rating);
             var score = decimal.Parse(pageLoader
-                                      .GetAllElements<IHtmlElement>("b", "ng-binding")
+                                      .GetAllElements<IHtmlElement>(document, "b", "ng-binding")
                                       .FirstOrDefault()
                                       ?.TextContent ?? "0");
-            var elements = pageLoader.HtmlContent.ToList();
             // return new CommonRating(int.Parse(elements[0]), int.Parse(elements[1]), score);
             return null;
         }
@@ -47,15 +46,17 @@ namespace Services
         public static async Task<DormitoryService> ParseDormitoryService(PageLoader pageLoader)
         {
             var document = await pageLoader.GoToPageAsync(UrFuUrls.DormitoryServices);
-            await (document.Links[4] as IHtmlAnchorElement).NavigateAsync();
-            var debtString = pageLoader.GetAllElements<IHtmlParagraphElement>("p", "alert alert-success")
+            document = await pageLoader.GoToPageAsync(UrFuUrls.DormitoryServices);
+            if (document is null)
+                return  new DormitoryService();
+            var debtString = pageLoader.GetAllElements<IHtmlParagraphElement>(document, "p", "alert alert-success")
                                  .Select(x => x.TextContent)
                                  .FirstOrDefault();
             var debt = decimal.Zero;
             if (debtString != null && regex.IsMatch(debtString))
-                debt = decimal.Parse(regex.Match(debtString).Value, CultureInfo.CurrentCulture);
+                debt = decimal.Parse(regex.Match(debtString).Value, CultureInfo);
             var service = new DormitoryService(debt);
-            var extractions = pageLoader.GetAllElements<IHtmlAnchorElement>("a", "btn btn-info");
+            var extractions = pageLoader.GetAllElements<IHtmlAnchorElement>(document, "a", "btn btn-info");
             foreach (var extraction in extractions)
             {
                 var parsed = ParseExtraction(extraction.Text);

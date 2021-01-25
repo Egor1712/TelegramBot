@@ -8,7 +8,7 @@ namespace ApplicationLogic
         private readonly List<Extraction> extractions = new List<Extraction>();
         public IReadOnlyCollection<Extraction> Extractions => extractions;
 
-        public DormitoryService(decimal debt)
+        public DormitoryService(decimal debt = 0)
         {
             Debt = debt;
         }
