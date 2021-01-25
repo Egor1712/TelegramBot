@@ -145,3 +145,10 @@ _NCrunch*
 *.info
 *.info
 *.cache
+*.dll
+*.dll
+*.pdb
+*.dll
+*.cache
+ApplicationLogic/bin/Debug/netcoreapp3.1/ApplicationLogic.dll
+ApplicationLogic/bin/Debug/netcoreapp3.1/ApplicationLogic.dll
